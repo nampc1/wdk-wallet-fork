@@ -15,7 +15,7 @@
 
 import * as bip39 from 'bip39'
 
-import { NotImplementedError } from './abstract-wallet-account.js';
+import { NotImplementedError } from './wallet-account.js';
 
 /** @typedef {import('./wallet-account.js').default} IWalletAccount */
 
