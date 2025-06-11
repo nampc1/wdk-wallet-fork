@@ -1,1 +1,1 @@
-# wdk-wallet
+# @wdk/wallet
