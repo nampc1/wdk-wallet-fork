@@ -1,8 +1,7 @@
 {
   "include": [
     "index.js",
-    "src/abstract-wallet-manager.js",
-    "src/wallet-account.js"
+    "src/**/*.js",
   ],
   "compilerOptions": {
     "target": "ES2015",
@@ -11,7 +10,6 @@
     "allowJs": true,
     "declaration": true,
     "emitDeclarationOnly": true,
-    "noResolve": true,
-    "skipLibCheck": true
+    "outDir": "./types"
   }
 }

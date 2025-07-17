@@ -20,5 +20,9 @@
     "rimraf": "^6.0.1",
     "standard": "^17.1.2",
     "typescript": "^5.8.3"
+  },
+  "exports": {
+    ".": "./index.js",
+    "./protocols": "./src/protocols/index.js"
   }
 }

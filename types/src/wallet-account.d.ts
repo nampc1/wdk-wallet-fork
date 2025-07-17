@@ -27,13 +27,13 @@
 export class NotImplementedError extends Error {
     /**
      * Create a new not implemented error.
-     * 
+     *
      * @param {string} methodName - The method's name.
      */
     constructor(methodName: string);
 }
 /** @interface */
-export default interface IWalletAccount {
+export default class IWalletAccount {
     /**
      * The derivation path's index of this account.
      *
@@ -96,7 +96,7 @@ export default interface IWalletAccount {
     /**
      * Quotes the costs of a send transaction operation.
      *
-     * @see {sendTransaction}
+     * @see {@link sendTransaction}
      * @param {Transaction} tx - The transaction.
      * @returns {Promise<Omit<TransactionResult, 'hash'>>} The transaction's quotes.
      */
@@ -111,11 +111,18 @@ export default interface IWalletAccount {
     /**
      * Quotes the costs of a transfer operation.
      *
-     * @see {transfer}
+     * @see {@link transfer}
      * @param {TransferOptions} options - The transfer's options.
      * @returns {Promise<Omit<TransferResult, 'hash'>>} The transfer's quotes.
      */
     quoteTransfer(options: TransferOptions): Promise<Omit<TransferResult, "hash">>;
+    /**
+     * Returns a transaction's receipt.
+     *
+     * @param {string} hash - The transaction's hash.
+     * @returns {Promise<unknown | null>} – The receipt, or null if the transaction has not been included in a block yet.
+     */
+    getTransactionReceipt(hash: string): Promise<unknown | null>;
     /**
      * Disposes the wallet account, erasing the private key from the memory.
      */

@@ -26,8 +26,8 @@ import { NotImplementedError } from './wallet-account.js'
 
 /**
  * @typedef {Object} FeeRates
- * @property {number} normal - The fee rate for transaction sent with normal priority (in base unit).
- * @property {number} fast - The fee rate for transaction sent with fast priority (in base unit).
+ * @property {number} normal - The fee rate for transaction sent with normal priority.
+ * @property {number} fast - The fee rate for transaction sent with fast priority.
  */
 
 /** @abstract */
@@ -41,7 +41,7 @@ export default class AbstractWalletManager {
   constructor (seed, config = { }) {
     if (typeof seed === 'string') {
       if (!AbstractWalletManager.isValidSeedPhrase(seed)) {
-        throw new Error('Invalid seed phrase.')
+        throw new Error('The seed phrase is invalid.')
       }
 
       seed = bip39.mnemonicToSeedSync(seed)
@@ -113,7 +113,7 @@ export default class AbstractWalletManager {
    * Returns the current fee rates.
    *
    * @abstract
-   * @returns {Promise<FeeRates>} The fee rates.
+   * @returns {Promise<FeeRates>} The fee rates (in base unit).
    */
   async getFeeRates () {
     throw new NotImplementedError('getFeeRates()')

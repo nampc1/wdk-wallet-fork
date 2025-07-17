@@ -5,11 +5,11 @@
  */
 /**
  * @typedef {Object} FeeRates
- * @property {number} normal - The fee rate for transaction sent with normal priority (in base unit).
- * @property {number} fast - The fee rate for transaction sent with fast priority (in base unit).
+ * @property {number} normal - The fee rate for transaction sent with normal priority.
+ * @property {number} fast - The fee rate for transaction sent with fast priority.
  */
 /** @abstract */
-export default abstract class AbstractWalletManager {
+export default class AbstractWalletManager {
     /**
      * Returns a random [BIP-39](https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki) seed phrase.
      *
@@ -52,7 +52,7 @@ export default abstract class AbstractWalletManager {
      * @param {number} [index] - The index of the account to get (default: 0).
      * @returns {Promise<IWalletAccount>} The account.
      */
-    abstract getAccount(index?: number): Promise<IWalletAccount>;
+    getAccount(index?: number): Promise<IWalletAccount>;
     /**
      * Returns the wallet account at a specific [BIP-44](https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki) derivation path.
      *
@@ -60,20 +60,20 @@ export default abstract class AbstractWalletManager {
      * @param {string} path - The derivation path (e.g. "0'/0/0").
      * @returns {Promise<IWalletAccount>} The account.
      */
-    abstract getAccountByPath(path: string): Promise<IWalletAccount>;
+    getAccountByPath(path: string): Promise<IWalletAccount>;
     /**
      * Returns the current fee rates.
      *
      * @abstract
-     * @returns {Promise<FeeRates>} The fee rates.
+     * @returns {Promise<FeeRates>} The fee rates (in base unit).
      */
-    abstract getFeeRates(): Promise<FeeRates>;
+    getFeeRates(): Promise<FeeRates>;
     /**
      * Disposes all the wallet accounts, erasing their private keys from the memory.
-     * 
+     *
      * @abstract
      */
-    abstract dispose(): void;
+    dispose(): void;
 }
 export type IWalletAccount = import("./wallet-account.js").default;
 export type WalletConfig = {
@@ -84,11 +84,11 @@ export type WalletConfig = {
 };
 export type FeeRates = {
     /**
-     * - The fee rate for transaction sent with normal priority (in base unit).
+     * - The fee rate for transaction sent with normal priority.
      */
     normal: number;
     /**
-     * - The fee rate for transaction sent with fast priority (in base unit).
+     * - The fee rate for transaction sent with fast priority.
      */
     fast: number;
 };

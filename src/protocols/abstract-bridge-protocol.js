@@ -1,0 +1,86 @@
+// Copyright 2024 Tether Operations Limited
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+'use strict'
+
+import { NotImplementedError } from '../wallet-account.js'
+
+/** @typedef {import('../wallet-account.js').default} IWalletAccount */
+
+/**
+ * @typedef {Object} BridgeProtocolConfig
+ * @property {number} [bridgeMaxFee] - The maximum fee amount for bridge operations.
+ */
+
+/**
+ * @typedef {Object} BridgeOptions
+ * @property {string} targetChain - The identifier of the destination blockchain (e.g., "arbitrum").
+ * @property {string} recipient - The address of the recipient.
+ * @property {string} token - The address of the token to bridge.
+ * @property {number} amount - The amount of tokenss to bridge to the destination chain (in base unit).
+ */
+
+/**
+ * @typedef {Object} BridgeResult
+ * @property {string} hash - The hash of the bridge operation.
+ * @property {number} fee - The gas cost.
+ * @property {number} bridgeFee - The bridge cost in the bridged token.
+ */
+
+/** @abstract */
+export default class AbstractBridgeProtocol {
+  /**  
+   * Creates a new bridge protocol.
+   * 
+   * @param {IWalletAccount} account - The wallet account to use to interact with the protocol.
+   * @param {BridgeProtocolConfig} config - The bridge protocol configuration.
+   */
+  constructor (account, config) {
+    /**
+     * The wallet account to use to interact with the protocol.
+     * 
+     * @protected
+     * @type {IWalletAccount}
+     */
+    this._account = account
+
+    /** 
+     * The bridge protocol configuration.
+     * 
+     * @protected
+     * @type {BridgeProtocolConfig}
+     */
+    this._config = config
+  }
+
+  /**
+   * Bridges a token to a different blockchain.
+   *
+   * @param {BridgeOptions} options - The bridge's options.
+   * @returns {Promise<BridgeResult>} The bridge's result.
+   */
+  async bridge (options) {
+    throw new NotImplementedError('bridge(options)')
+  }
+
+  /**
+   * Quotes the costs of a bridge operation.
+   *
+   * @see {@link bridge}
+   * @param {BridgeOptions} options - The bridge's options.
+   * @returns {Promise<Omit<BridgeResult, 'hash'>>} The bridge's quotes.
+   */
+  async quoteBridge (options) {
+    throw new NotImplementedError('quoteBridge(options)')
+  }
+}

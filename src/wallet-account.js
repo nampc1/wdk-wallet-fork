@@ -148,7 +148,7 @@ export default class IWalletAccount {
   /**
    * Quotes the costs of a send transaction operation.
    *
-   * @see {sendTransaction}
+   * @see {@link sendTransaction}
    * @param {Transaction} tx - The transaction.
    * @returns {Promise<Omit<TransactionResult, 'hash'>>} The transaction's quotes.
    */
@@ -169,12 +169,22 @@ export default class IWalletAccount {
   /**
    * Quotes the costs of a transfer operation.
    *
-   * @see {transfer}
+   * @see {@link transfer}
    * @param {TransferOptions} options - The transfer's options.
    * @returns {Promise<Omit<TransferResult, 'hash'>>} The transfer's quotes.
    */
   async quoteTransfer (options) {
     throw new NotImplementedError('quoteTransfer(options)')
+  }
+
+  /**
+   * Returns a transaction's receipt.
+   *
+   * @param {string} hash - The transaction's hash.
+   * @returns {Promise<unknown | null>} – The receipt, or null if the transaction has not been included in a block yet.
+   */
+  async getTransactionReceipt (hash) {
+    throw new NotImplementedError('getTransactionReceipt(hash)')
   }
 
   /**
