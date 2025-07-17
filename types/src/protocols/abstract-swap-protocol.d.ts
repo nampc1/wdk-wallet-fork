@@ -24,18 +24,20 @@ export default abstract class AbstractSwapProtocol {
     /**
      * Swaps a pair of tokens.
      *
+     * @abstract
      * @param {SwapOptions} options - The swap's options.
      * @returns {Promise<SwapResult>} The swap's result.
      */
-    swap(options: SwapOptions): Promise<SwapResult>;
+    abstract swap(options: SwapOptions): Promise<SwapResult>;
     /**
      * Quotes the costs of a swap operation.
      *
      * @see {@link swap}
+     * @abstract
      * @param {SwapOptions} options - The swap's options.
      * @returns {Promise<Omit<SwapResult, 'hash'>>} The swap's quotes.
      */
-    quoteSwap(options: SwapOptions): Promise<Omit<SwapResult, "hash">>;
+    abstract quoteSwap(options: SwapOptions): Promise<Omit<SwapResult, "hash">>;
 }
 export type IWalletAccount = import("../wallet-account.js").default;
 export type SwapProtocolConfig = {

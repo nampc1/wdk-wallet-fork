@@ -67,6 +67,7 @@ export default class AbstractSwapProtocol {
   /**
    * Swaps a pair of tokens.
    *
+   * @abstract
    * @param {SwapOptions} options - The swap's options.
    * @returns {Promise<SwapResult>} The swap's result.
    */
@@ -78,6 +79,7 @@ export default class AbstractSwapProtocol {
    * Quotes the costs of a swap operation.
    *
    * @see {@link swap}
+   * @abstract
    * @param {SwapOptions} options - The swap's options.
    * @returns {Promise<Omit<SwapResult, 'hash'>>} The swap's quotes.
    */

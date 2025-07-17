@@ -66,6 +66,7 @@ export default class AbstractBridgeProtocol {
   /**
    * Bridges a token to a different blockchain.
    *
+   * @abstract
    * @param {BridgeOptions} options - The bridge's options.
    * @returns {Promise<BridgeResult>} The bridge's result.
    */
@@ -77,6 +78,7 @@ export default class AbstractBridgeProtocol {
    * Quotes the costs of a bridge operation.
    *
    * @see {@link bridge}
+   * @abstract
    * @param {BridgeOptions} options - The bridge's options.
    * @returns {Promise<Omit<BridgeResult, 'hash'>>} The bridge's quotes.
    */

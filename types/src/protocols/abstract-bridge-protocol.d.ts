@@ -24,18 +24,20 @@ export default abstract class AbstractBridgeProtocol {
     /**
      * Bridges a token to a different blockchain.
      *
+     * @abstract
      * @param {BridgeOptions} options - The bridge's options.
      * @returns {Promise<BridgeResult>} The bridge's result.
      */
-    bridge(options: BridgeOptions): Promise<BridgeResult>;
+    abstract bridge(options: BridgeOptions): Promise<BridgeResult>;
     /**
      * Quotes the costs of a bridge operation.
      *
      * @see {@link bridge}
+     * @abstract
      * @param {BridgeOptions} options - The bridge's options.
      * @returns {Promise<Omit<BridgeResult, 'hash'>>} The bridge's quotes.
      */
-    quoteBridge(options: BridgeOptions): Promise<Omit<BridgeResult, "hash">>;
+    abstract quoteBridge(options: BridgeOptions): Promise<Omit<BridgeResult, "hash">>;
 }
 export type IWalletAccount = import("../wallet-account.js").default;
 export type BridgeProtocolConfig = {

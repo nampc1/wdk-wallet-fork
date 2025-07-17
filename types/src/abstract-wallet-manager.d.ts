@@ -42,7 +42,7 @@ export default abstract class AbstractWalletManager {
      * @param {number} [index] - The index of the account to get (default: 0).
      * @returns {Promise<IWalletAccount>} The account.
      */
-    getAccount(index?: number): Promise<IWalletAccount>;
+    abstract getAccount(index?: number): Promise<IWalletAccount>;
     /**
      * Returns the wallet account at a specific [BIP-44](https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki) derivation path.
      *
@@ -50,20 +50,20 @@ export default abstract class AbstractWalletManager {
      * @param {string} path - The derivation path (e.g. "0'/0/0").
      * @returns {Promise<IWalletAccount>} The account.
      */
-    getAccountByPath(path: string): Promise<IWalletAccount>;
+    abstract getAccountByPath(path: string): Promise<IWalletAccount>;
     /**
      * Returns the current fee rates.
      *
      * @abstract
      * @returns {Promise<FeeRates>} The fee rates (in base unit).
      */
-    getFeeRates(): Promise<FeeRates>;
+    abstract getFeeRates(): Promise<FeeRates>;
     /**
      * Disposes all the wallet accounts, erasing their private keys from the memory.
      *
      * @abstract
      */
-    dispose(): void;
+    abstract dispose(): void;
 }
 export type IWalletAccount = import("./wallet-account.js").default;
 export type WalletConfig = {
