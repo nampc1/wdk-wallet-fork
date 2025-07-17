@@ -1,13 +1,3 @@
-/** @typedef {import('./wallet-account.js').default} IWalletAccount */
-/**
- * @typedef {Object} WalletConfig
- * @property {number} [transferMaxFee] - The maximum fee amount for transfer operations.
- */
-/**
- * @typedef {Object} FeeRates
- * @property {number} normal - The fee rate for transaction sent with normal priority (in base unit).
- * @property {number} fast - The fee rate for transaction sent with fast priority (in base unit).
- */
 /** @abstract */
 export default abstract class AbstractWalletManager {
     /**
@@ -65,12 +55,12 @@ export default abstract class AbstractWalletManager {
      * Returns the current fee rates.
      *
      * @abstract
-     * @returns {Promise<FeeRates>} The fee rates.
+     * @returns {Promise<FeeRates>} The fee rates (in base unit).
      */
     abstract getFeeRates(): Promise<FeeRates>;
     /**
      * Disposes all the wallet accounts, erasing their private keys from the memory.
-     * 
+     *
      * @abstract
      */
     abstract dispose(): void;
@@ -84,11 +74,11 @@ export type WalletConfig = {
 };
 export type FeeRates = {
     /**
-     * - The fee rate for transaction sent with normal priority (in base unit).
+     * - The fee rate for transaction sent with normal priority.
      */
     normal: number;
     /**
-     * - The fee rate for transaction sent with fast priority (in base unit).
+     * - The fee rate for transaction sent with fast priority.
      */
     fast: number;
 };
