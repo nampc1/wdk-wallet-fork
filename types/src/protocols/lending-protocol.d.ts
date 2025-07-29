@@ -117,7 +117,7 @@ export type WithdrawOptions = {
      */
     amount: number;
     /**
-     * - The address that should receive the funds. If not set, the account itself will receive the tokens.
+     * - The address that should receive the tokens. If not set, the account itself will receive the funds.
      */
     to?: string;
 };
