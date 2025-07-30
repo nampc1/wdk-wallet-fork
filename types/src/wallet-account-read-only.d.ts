@@ -39,7 +39,7 @@ export interface IWalletAccountReadOnly {
      * Returns a transaction's receipt.
      *
      * @param {string} hash - The transaction's hash.
-     * @returns {Promise<unknown | null>} – The receipt, or null if the transaction has not been included in a block yet.
+     * @returns {Promise<unknown | null>} The receipt, or null if the transaction has not been included in a block yet.
      */
     getTransactionReceipt(hash: string): Promise<unknown | null>;
 }
@@ -57,16 +57,11 @@ export default abstract class AbstractWalletAccountReadOnly implements IWalletAc
     /** @private */
     private _address;
     getAddress(): Promise<string>;
-    /** @abstract */
-    abstract getBalance(): Promise<void>;
-    /** @abstract */
-    abstract getTokenBalance(tokenAddress: any): Promise<void>;
-    /** @abstract */
-    abstract quoteSendTransaction(tx: any): Promise<void>;
-    /** @abstract */
-    abstract quoteTransfer(options: any): Promise<void>;
-    /** @abstract */
-    abstract getTransactionReceipt(hash: any): Promise<void>;
+    abstract getBalance(): Promise<number>;
+    abstract getTokenBalance(tokenAddress: string): Promise<number>;
+    abstract quoteSendTransaction(tx: Transaction): Promise<Omit<TransactionResult, "hash">>;
+    abstract quoteTransfer(options: TransferOptions): Promise<Omit<TransferResult, "hash">>;
+    abstract getTransactionReceipt(hash: string): Promise<unknown | null>;
 }
 export type Transaction = {
     /**
