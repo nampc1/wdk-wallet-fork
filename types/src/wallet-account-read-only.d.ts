@@ -53,7 +53,14 @@ export default abstract class AbstractWalletAccountReadOnly implements IWalletAc
      */
     constructor(address?: string);
     /** @private */
-    private _address;
+    private __address;
+    /**
+     * The account's address.
+     *
+     * @protected
+     * @type {string | undefined}
+     */
+    protected get _address(): string | undefined;
     getAddress(): Promise<string>;
     /**
      * Returns the account's native token balance.

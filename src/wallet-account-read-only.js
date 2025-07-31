@@ -113,7 +113,17 @@ export default class AbstractWalletAccountReadOnly {
    */
   constructor (address) {
     /** @private */
-    this._address = address
+    this.__address = address
+  }
+
+  /**
+   * The account's address.
+   * 
+   * @protected
+   * @type {string | undefined}
+   */
+  get _address () {
+    return this.__address
   }
 
   async getAddress () {
