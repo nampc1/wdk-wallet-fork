@@ -82,7 +82,7 @@ export default abstract class AbstractLendingProtocol {
      */
     abstract quoteRepay(options: RepayOptions): Promise<Omit<RepayResult, "hash">>;
 }
-export type IWalletAccount = import("../wallet-account.js").default;
+export type IWalletAccount = import("../wallet-account.js").IWalletAccount;
 export type SupplyOptions = {
     /**
      * - The address of the token to supply.
