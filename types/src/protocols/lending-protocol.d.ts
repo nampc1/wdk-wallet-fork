@@ -1,5 +1,64 @@
+/** @interface */
+export interface ILendingProtocol {
+    /**
+     * Supplies a specific token amount to the lending pool.
+     *
+     * @param {SupplyOptions} options - The supply's options.
+     * @returns {Promise<SupplyResult>} The supply's result.
+     */
+    supply(options: SupplyOptions): Promise<SupplyResult>;
+    /**
+     * Quotes the costs of a supply operation.
+     *
+     * @param {SupplyOptions} options - The supply's options.
+     * @returns {Promise<Omit<SupplyResult, 'hash'>>} The supply's costs.
+     */
+    quoteSupply(options: SupplyOptions): Promise<Omit<SupplyResult, "hash">>;
+    /**
+     * Withdraws a specific token amount from the pool.
+     *
+     * @param {WithdrawOptions} options - The withdraw's options.
+     * @returns {Promise<WithdrawResult>} The withdraw's result.
+     */
+    withdraw(options: WithdrawOptions): Promise<WithdrawResult>;
+    /**
+     * Quotes the costs of a withdraw operation.
+     *
+     * @param {WithdrawOptions} options - The withdraw's options.
+     * @returns {Promise<Omit<WithdrawResult, 'hash'>>} The withdraw's costs.
+     */
+    quoteWithdraw(options: WithdrawOptions): Promise<Omit<WithdrawResult, "hash">>;
+    /**
+     * Borrows a specific token amount.
+     *
+     * @param {BorrowOptions} options - The borrow's options.
+     * @returns {Promise<BorrowResult>} The borrow's result.
+     */
+    borrow(options: BorrowOptions): Promise<BorrowResult>;
+    /**
+     * Quotes the costs of a borrow operation.
+     *
+     * @param {BorrowOptions} options - The borrow's options.
+     * @returns {Promise<Omit<BorrowResult, 'hash'>>} The borrow's costs.
+     */
+    quoteBorrow(options: BorrowOptions): Promise<Omit<BorrowResult, "hash">>;
+    /**
+     * Repays a specific token amount.
+     *
+     * @param {RepayOptions} options - The borrow's options.
+     * @returns {Promise<RepayResult>} The repay's result.
+     */
+    repay(options: RepayOptions): Promise<RepayResult>;
+    /**
+     * Quotes the costs of a repay operation.
+     *
+     * @param {RepayOptions} options - The repay's options.
+     * @returns {Promise<Omit<RepayResult, 'hash'>>} The repay's costs.
+     */
+    quoteRepay(options: RepayOptions): Promise<Omit<RepayResult, "hash">>;
+}
 /** @abstract */
-export default abstract class LendingProtocol {
+export default abstract class LendingProtocol implements ILendingProtocol {
     /**
      * Creates a new read-only lending protocol.
      *

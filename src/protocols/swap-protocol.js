@@ -41,7 +41,33 @@ import { NotImplementedError } from '../errors.js'
  * @property {number} tokenOutAmount - The amount of output tokens bought.
  */
 
-/** @abstract */
+/** @interface */
+export class ISwapProtocol {
+  /**
+   * Swaps a pair of tokens.
+   *
+   * @param {SwapOptions} options - The swap's options.
+   * @returns {Promise<SwapResult>} The swap's result.
+   */
+  async swap (options) {
+    throw new NotImplementedError('swap(options)')
+  }
+
+  /**
+   * Quotes the costs of a swap operation.
+   *
+   * @param {SwapOptions} options - The swap's options.
+   * @returns {Promise<Omit<SwapResult, 'hash'>>} The swap's quotes.
+   */
+  async quoteSwap (options) {
+    throw new NotImplementedError('quoteSwap(options)')
+  }
+}
+
+/** 
+ * @abstract
+ * @implements {ISwapProtocol}
+ */
 export default class SwapProtocol {
   /**
    * Creates a new read-only swap protocol.
@@ -95,6 +121,6 @@ export default class SwapProtocol {
    * @returns {Promise<Omit<SwapResult, 'hash'>>} The swap's quotes.
    */
   async quoteSwap (options) {
-    throw new NotImplementedError('swap(options)')
+    throw new NotImplementedError('quoteSwap(options)')
   }
 }

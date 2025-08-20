@@ -1,5 +1,22 @@
+/** @interface */
+export interface ISwapProtocol {
+    /**
+     * Swaps a pair of tokens.
+     *
+     * @param {SwapOptions} options - The swap's options.
+     * @returns {Promise<SwapResult>} The swap's result.
+     */
+    swap(options: SwapOptions): Promise<SwapResult>;
+    /**
+     * Quotes the costs of a swap operation.
+     *
+     * @param {SwapOptions} options - The swap's options.
+     * @returns {Promise<Omit<SwapResult, 'hash'>>} The swap's quotes.
+     */
+    quoteSwap(options: SwapOptions): Promise<Omit<SwapResult, "hash">>;
+}
 /** @abstract */
-export default abstract class SwapProtocol {
+export default abstract class SwapProtocol implements ISwapProtocol {
     /**
      * Creates a new read-only swap protocol.
      *
