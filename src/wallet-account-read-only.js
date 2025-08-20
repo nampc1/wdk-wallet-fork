@@ -126,6 +126,11 @@ export default class WalletAccountReadOnly {
     return this.__address
   }
 
+  /**
+   * Returns the account's address.
+   *
+   * @returns {Promise<string>} The account's address.
+   */
   async getAddress () {
     if (!this._address) {
       throw new Error("The account's address must be set to perform this operation.")

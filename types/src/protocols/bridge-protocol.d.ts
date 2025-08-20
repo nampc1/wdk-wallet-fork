@@ -1,5 +1,22 @@
+/** @interface */
+export interface IBridgeProtocol {
+    /**
+     * Bridges a token to a different blockchain.
+     *
+     * @param {BridgeOptions} options - The bridge's options.
+     * @returns {Promise<BridgeResult>} The bridge's result.
+     */
+    bridge(options: BridgeOptions): Promise<BridgeResult>;
+    /**
+     * Quotes the costs of a bridge operation.
+     *
+     * @param {BridgeOptions} options - The bridge's options.
+     * @returns {Promise<Omit<BridgeResult, 'hash'>>} The bridge's quotes.
+     */
+    quoteBridge(options: BridgeOptions): Promise<Omit<BridgeResult, "hash">>;
+}
 /** @abstract */
-export default abstract class BridgeProtocol {
+export default abstract class BridgeProtocol implements IBridgeProtocol {
     /**
      * Creates a new read-only bridge protocol.
      *

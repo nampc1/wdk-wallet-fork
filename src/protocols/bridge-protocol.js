@@ -39,7 +39,33 @@ import { NotImplementedError } from '../errors.js'
  * @property {number} bridgeFee - The bridge cost in the bridged token.
  */
 
-/** @abstract */
+/** @interface */
+export class IBridgeProtocol {
+  /**
+   * Bridges a token to a different blockchain.
+   *
+   * @param {BridgeOptions} options - The bridge's options.
+   * @returns {Promise<BridgeResult>} The bridge's result.
+   */
+  async bridge (options) {
+    throw new NotImplementedError('bridge(options)')
+  }
+
+  /**
+   * Quotes the costs of a bridge operation.
+   *
+   * @param {BridgeOptions} options - The bridge's options.
+   * @returns {Promise<Omit<BridgeResult, 'hash'>>} The bridge's quotes.
+   */
+  async quoteBridge (options) {
+    throw new NotImplementedError('quoteBridge(options)')
+  }
+}
+
+/** 
+ * @abstract
+ * @implements {IBridgeProtocol}
+ */
 export default class BridgeProtocol {
   /**
    * Creates a new read-only bridge protocol.

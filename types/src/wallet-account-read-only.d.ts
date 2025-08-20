@@ -61,6 +61,11 @@ export default abstract class WalletAccountReadOnly implements IWalletAccountRea
      * @type {string | undefined}
      */
     protected get _address(): string | undefined;
+    /**
+     * Returns the account's address.
+     *
+     * @returns {Promise<string>} The account's address.
+     */
     getAddress(): Promise<string>;
     /**
      * Returns the account's native token balance.

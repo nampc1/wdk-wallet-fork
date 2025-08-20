@@ -71,7 +71,93 @@ import { NotImplementedError } from '../errors.js'
  * @property {number} fee - The gas cost.
  */
 
-/** @abstract */
+/** @interface */
+export class ILendingProtocol {
+  /**
+   * Supplies a specific token amount to the lending pool.
+   *
+   * @param {SupplyOptions} options - The supply's options.
+   * @returns {Promise<SupplyResult>} The supply's result.
+   */
+  async supply(options) {
+    throw new NotImplementedError('supply(options)')
+  }
+
+  /**
+   * Quotes the costs of a supply operation.
+   *
+   * @param {SupplyOptions} options - The supply's options.
+   * @returns {Promise<Omit<SupplyResult, 'hash'>>} The supply's costs.
+   */
+  async quoteSupply(options) {
+    throw new NotImplementedError('quoteSupply(options)')
+  }
+
+  /**
+   * Withdraws a specific token amount from the pool.
+   *
+   * @param {WithdrawOptions} options - The withdraw's options.
+   * @returns {Promise<WithdrawResult>} The withdraw's result.
+   */
+  async withdraw(options) {
+    throw new NotImplementedError('withdraw(options)')
+  }
+
+  /**
+   * Quotes the costs of a withdraw operation.
+   *
+   * @param {WithdrawOptions} options - The withdraw's options.
+   * @returns {Promise<Omit<WithdrawResult, 'hash'>>} The withdraw's costs.
+   */
+  async quoteWithdraw(options) {
+    throw new NotImplementedError('quoteWithdraw(options)')
+  }
+
+  /**
+   * Borrows a specific token amount.
+   *
+   * @param {BorrowOptions} options - The borrow's options.
+   * @returns {Promise<BorrowResult>} The borrow's result.
+   */
+  async borrow(options) {
+    throw new NotImplementedError('borrow(options)')
+  }
+
+  /**
+   * Quotes the costs of a borrow operation.
+   *
+   * @param {BorrowOptions} options - The borrow's options.
+   * @returns {Promise<Omit<BorrowResult, 'hash'>>} The borrow's costs.
+   */
+  async quoteBorrow(options) {
+    throw new NotImplementedError('quoteBorrow(options)')
+  }
+
+  /**
+   * Repays a specific token amount.
+   *
+   * @param {RepayOptions} options - The borrow's options.
+   * @returns {Promise<RepayResult>} The repay's result.
+   */
+  async repay(options) {
+    throw new NotImplementedError('repay(options)')
+  }
+
+  /**
+   * Quotes the costs of a repay operation.
+   *
+   * @param {RepayOptions} options - The repay's options.
+   * @returns {Promise<Omit<RepayResult, 'hash'>>} The repay's costs.
+   */
+  async quoteRepay(options) {
+    throw new NotImplementedError('quoteRepay(options)')
+  }
+}
+
+/** 
+ * @abstract 
+ * @implements {ILendingProtocol}
+ */
 export default class LendingProtocol {
   /**
    * Creates a new read-only lending protocol.
