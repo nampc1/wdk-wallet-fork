@@ -1,0 +1,17 @@
+export type SwapProtocolConfig = import("./swap-protocol.js").SwapProtocolConfig;
+export type SwapOptions = import("./swap-protocol.js").SwapOptions;
+export type SwapResult = import("./swap-protocol.js").SwapResult;
+export type BridgeProtocolConfig = import("./bridge-protocol.js").BridgeProtocolConfig;
+export type BridgeOptions = import("./bridge-protocol.js").BridgeOptions;
+export type BridgeResult = import("./bridge-protocol.js").BridgeResult;
+export type SupplyOptions = import("./lending-protocol.js").SupplyOptions;
+export type SupplyResult = import("./lending-protocol.js").SupplyResult;
+export type WithdrawOptions = import("./lending-protocol.js").WithdrawOptions;
+export type WithdrawResult = import("./lending-protocol.js").WithdrawResult;
+export type BorrowOptions = import("./lending-protocol.js").BorrowOptions;
+export type BorrowResult = import("./lending-protocol.js").BorrowResult;
+export type RepayOptions = import("./lending-protocol.js").RepayOptions;
+export type RepayResult = import("./lending-protocol.js").RepayResult;
+export { default as SwapProtocol, ISwapProtocol } from "./swap-protocol.js";
+export { default as BridgeProtocol, IBridgeProtocol } from "./bridge-protocol.js";
+export { default as LendingProtocol, ILendingProtocol } from "./lending-protocol.js";
