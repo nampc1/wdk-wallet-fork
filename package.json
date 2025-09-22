@@ -43,6 +43,10 @@
       "default": "./package.json"
     }
   },
+  "publishConfig": {
+    "access": "restricted",
+    "registry": "https://registry.npmjs.org/"
+  },
   "standard": {
     "ignore": [
       "bare.js",
