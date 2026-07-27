@@ -170,9 +170,14 @@ export class ISwidgeProtocol {
   /**
    * Executes a swidge operation.
    *
+   * If `options.minAmountOut` is provided, the implementation must throw before
+   * sending any transaction if the quoted output falls below that threshold.
+   *
    * @param {SwidgeOptions} options - The swidge options.
    * @param {SwidgeProtocolConfig} [config] - Optional provider-specific execution configuration.
    * @returns {Promise<SwidgeResult>} The swidge execution result.
+   * @throws {Error} If no account, or a read-only account was given at construction.
+   * @throws {Error} If `options.minAmountOut` is set and the quoted output falls below it.
    */
   async swidge (options, config) {
     throw new NotImplementedError('swidge(options, config)')
@@ -295,7 +300,7 @@ export default class SwidgeProtocol {
       minAmountOut: options.minAmountOut
     })
     const fee = result.fees.reduce((acc, f) => acc + f.amount, 0n)
-    return { fee, tokenInAmount: result.fromTokenAmount, tokenOutAmount: result.toTokenAmount }
+    return { fee, tokenInAmount: result.fromTokenAmount, tokenOutAmount: result.toTokenAmount } // todo
   }
 
   /**
@@ -359,11 +364,15 @@ export default class SwidgeProtocol {
   /**
    * Executes a swidge operation.
    *
+   * If `options.minAmountOut` is provided, the implementation must throw before
+   * sending any transaction if the quoted output falls below that threshold.
+   *
    * @abstract
    * @param {SwidgeOptions} options - The swidge options.
    * @param {SwidgeProtocolConfig} [config] - Optional provider-specific execution configuration.
    * @returns {Promise<SwidgeResult>} The swidge execution result.
    * @throws {Error} If no account, or a read-only account was given at construction.
+   * @throws {Error} If `options.minAmountOut` is set and the quoted output falls below it.
    */
   async swidge (options, config) {
     throw new NotImplementedError('swidge(options, config)')
